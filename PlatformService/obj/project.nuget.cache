@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "fDkCP9H/EaDmSQyueGFog2U7fUld6Lh7G918Ejid7F0u+kvEzmQglli8d0hl4L4qdJ23mJK9Zy8hlhb2+1R0rA==",
+  "success": true,
+  "projectFilePath": "/Users/rtambun/Documents/project/micoservices/microservices/PlatformService/PlatformService.csproj",
+  "expectedPackageFiles": [
+    "/Users/rtambun/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/rtambun/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/rtambun/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/Users/rtambun/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/Users/rtambun/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/Users/rtambun/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
