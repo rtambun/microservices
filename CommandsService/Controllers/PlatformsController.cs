@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommandService.Controllers
@@ -13,6 +14,7 @@ namespace CommandService.Controllers
 
         [HttpPost]
         public ActionResult<string> TestInvocation() {
+            Console.WriteLine("--> Test Invocation is ok");
             return (Ok("Test invocation from command service"));
         }
     }

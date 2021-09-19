@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
+using PlatformService.SyncDataServices.Http;
 
 namespace PlatformService.Controllers {
 
@@ -14,11 +16,13 @@ namespace PlatformService.Controllers {
     {
         private readonly IPlatformRepo _platformRepo;
         private readonly IMapper _mapper;
+        private readonly ICommandDataClient _commandDataClient;
 
-        public PlatformsController(IPlatformRepo platformRepo, IMapper mapper)
+        public PlatformsController(IPlatformRepo platformRepo, IMapper mapper, ICommandDataClient commandDataClient)
         {
             _platformRepo = platformRepo;
             _mapper = mapper;
+            _commandDataClient = commandDataClient;
         }
 
         [HttpGet]
@@ -47,7 +51,7 @@ namespace PlatformService.Controllers {
         }
 
         [HttpPost]
-        public ActionResult<PlatformReadDto> CreatePlatform(PlatformCreateDto platform) 
+        public async Task<ActionResult<PlatformReadDto>> CreatePlatform(PlatformCreateDto platform) 
         {
             Console.WriteLine("--> Create Platform");
             var platformModel = _mapper.Map<Platform>(platform);
@@ -55,6 +59,13 @@ namespace PlatformService.Controllers {
             _platformRepo.SaveChanges();
 
             var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
+
+            try {
+                await _commandDataClient.SendPlatformToCommandService(platformReadDto);
+            } catch (Exception ex) {
+                Console.WriteLine($"--> Exception when calling command service {ex.Message}");
+            }
+
             return CreatedAtRoute("GetPlatformById", new {platformModel.Id}, platformReadDto);
         }
     }
